@@ -18,17 +18,11 @@ end
 gem 'jquery-rails'
 gem 'authlogic'
 gem 'exceptional'
-gem 'heroku'
-gem 'taps'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+	gem 'heroku'
+	gem 'taps'
+end
 
 group :test do
   # Pretty printed test output
