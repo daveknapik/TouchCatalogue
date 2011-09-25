@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+philip_jeck:
+  name: Philip Jeck
+  bio: Philip Jeck (born 1952) is an English multimedia composer and choreographer.
+  photo_url: http://www.flickr.com/photos/daveknapik/4168340361
+
+fennesz:
+  name: Fennesz
+  bio: Christian Fennesz is an Austrian electronic musician known for his works for guitar and laptop.
+  photo_url: http://www.flickr.com/photos/daveknapik/3482675497/

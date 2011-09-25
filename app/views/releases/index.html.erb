@@ -1,0 +1,56 @@
+<% title 'Releases' %>
+
+<p>
+Publisher
+<%= select :release, 
+		   :publisher, 
+		   {"All publishers" => "all","Touch" => "Touch", "Ash International" => "Ash International", "OR" => "OR"}.sort,
+		   {:selected => params[:publisher]},
+		   {:onchange => "document.location = '/releases/publisher/' + this.value"}%>
+</p>
+
+<% if current_admin %>
+<p>
+	<%= link_to 'Add new release', new_release_path %>
+</p>
+<% end %>
+
+<table cellpadding="10">
+	<tr>
+		<td>Catalogue Number</td>
+		<td>Artist</td>
+		<td>Title</td>
+		<td>Release Date</td>
+		<td>Publisher</td>
+		<% if current_admin %>
+			<td>Actions</td>
+		<% end %>
+	</tr>
+<% for release in @releases do %>
+	<tr class="<%= cycle('odd','even') %>">
+		<td><%= release.catalogue_number %></td>
+		<td>
+			<% if !release.artist.nil? %>
+				<%= release.artist.name %>
+			<% end %>
+		</td>
+		<td><%= release.title %></td>
+		<td><%= release.release_date %></td>
+		<td><%= release.publisher %></td>
+		<% if current_admin %>
+			<td>
+				<%= link_to 'View', release_path(release) %><br />
+				<%= link_to 'Edit', edit_release_path(release) %><br />
+				<%= link_to 'Delete', release_path(release), :method => :delete, :confirm => 'Are you sure?'%>
+			</td>
+		<% end %>
+	</tr>
+<% end %>
+
+</table>
+
+<% if current_admin && !@releases.empty? %>
+<p>
+	<%= link_to 'Add new release', new_release_path %>
+</p>
+<% end %>

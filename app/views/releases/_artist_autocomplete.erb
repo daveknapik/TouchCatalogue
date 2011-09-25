@@ -1,0 +1,7 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	if ($('input#release_artist_name').length > 0) {
+		$('#release_artist_name').autocomplete({source:[<% artists.each do |x| %>"<%= x.name.html_safe %>"<% unless x == artists.last %>,<% end %><% end %>]});
+	}
+});
+</script>

@@ -1,0 +1,72 @@
+<%= render :partial => "artist_autocomplete", :locals => {:artists => @artists} %>
+
+<% title 'Add New Release' %>
+
+<%= form_for(@release) do |form| %>
+	<p>
+		<%= form.label :publisher %><br />
+		<%= select :release, :publisher, {"Touch" => "Touch", "Ash International" => "Ash International", "OR" => "OR"}.sort %>
+	</p>
+	
+	<p>
+		<%= form.label :catalogue_number %><br />
+		<%= form.text_field :catalogue_number %>
+	</p>
+	
+	<p>
+		<%= form.label :artist_name %><br />
+		<%= text_field :release, :artist_name %>
+	</p>
+	
+	<p>
+		<%= form.label :title %><br />
+		<%= form.text_field :title %>
+	</p>
+	
+	<p>
+		<%= form.label :duration %><br />
+		<%= form.text_field :duration %>
+	</p>
+	
+	<p>
+		<%= form.label :description %><br />
+		<%= form.text_area :description %>
+	</p>
+	
+	<p>
+		<%= form.label :track_listing %><br />
+		<%= form.text_area :track_listing %>
+	</p>
+	
+	<p>
+		<%= form.label :release_date %><br />
+		<%= form.date_select :release_date, :order => [:day, :month, :year], :start_year => 1981 %>
+	</p>
+	
+	<p>
+		<%= form.label :release_url %><br />
+		<%= form.text_field :release_url %>
+	</p>
+	
+	<p>
+		<%= form.label :cover_art_url %><br />
+		<%= form.text_field :cover_art_url %>
+	</p>
+	
+	<p>
+		<%= form.label :itunes_url %><br />
+		<%= form.text_field :itunes_url %>
+	</p>
+	
+	<p>
+		<%= form.label :mp3_sample_url %><br />
+		<%= form.text_field :mp3_sample_url %>
+	</p>
+	
+	<p>
+		<%= form.label :reviews %><br />
+		<%= form.text_area :reviews %>
+	</p>
+	
+	<%= form.submit %>
+<% end %>

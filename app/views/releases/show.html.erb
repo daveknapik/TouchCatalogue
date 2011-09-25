@@ -1,0 +1,46 @@
+<p><strong>Publisher</strong>: <%= @release.publisher %></p>
+
+<p><strong>Catalogue Number</strong>: <%= @release.catalogue_number %></p>
+
+<p><strong>Artist:</strong> <%= @release.artist_name %></p>
+
+<p><strong>Title:</strong> <%= @release.title %></p>
+
+<p><strong>Duration:</strong> <%= @release.duration %></p>
+
+<p><strong>Description:</strong> <%= simple_format @release.description %></p>
+
+<p><strong>Track listing:</strong> <%= simple_format @release.track_listing %></p>
+
+<p><strong>Release date:</strong> <%= @release.release_date.strftime('%d %B %Y') %></p>
+
+<p>
+	<strong>Release URL:</strong> 
+	<% if @release.release_url %>
+		<%= link_to @release.release_url, @release.release_url %>
+	<% end %>
+</p>
+
+<p>
+	<strong>Cover art URL:</strong>
+	<% if !@release.cover_art_url.blank? %>
+		<%= link_to @release.cover_art_url, @release.cover_art_url  %><br />
+		<%= image_tag(@release.cover_art_url) %>
+	<% end %>
+</p>
+
+<p>
+	<strong>iTunes URL:</strong> 
+	<% if @release.itunes_url %>
+		<%= link_to @release.itunes_url, @release.itunes_url  %>
+	<% end %>
+</p>
+
+<p>
+	<strong>mp3 sample URL:</strong> 
+	<% if @release.mp3_sample_url %>
+		<%= link_to @release.mp3_sample_url, @release.mp3_sample_url  %>
+	<% end %>
+</p>
+
+<p><strong>Reviews:</strong> <%= simple_format @release.reviews %></p>

@@ -1,0 +1,5 @@
+<% title 'Artists' %>
+
+<% for artist in @artists do %>
+	<p><%= artist.name %> <%= link_to 'Delete', artist_path(artist), :method => :delete, :confirm => 'Are you sure?'%></p>
+<% end %>
