@@ -1,5 +1,11 @@
 <% title 'Releases' %>
 
+<div id="toolbarcontainer">
+	<div id="toolbar">
+		<%= text_field_tag "search", nil, :size => 50 %> <%= image_tag "ajax-loader.gif" %>
+	</div>
+</div>
+
 <p>
 Publisher
 <%= select :release, 
@@ -16,7 +22,7 @@ Publisher
 <% end %>
 
 <table cellpadding="10">
-	<tr>
+	<tr id="headers">
 		<td>Catalogue Number</td>
 		<td>Artist</td>
 		<td>Title</td>
@@ -26,27 +32,7 @@ Publisher
 			<td>Actions</td>
 		<% end %>
 	</tr>
-<% for release in @releases do %>
-	<tr class="<%= cycle('odd','even') %>">
-		<td><%= release.catalogue_number %></td>
-		<td>
-			<% if !release.artist.nil? %>
-				<%= release.artist.name %>
-			<% end %>
-		</td>
-		<td><%= release.title %></td>
-		<td><%= release.release_date %></td>
-		<td><%= release.publisher %></td>
-		<% if current_admin %>
-			<td>
-				<%= link_to 'View', release_path(release) %><br />
-				<%= link_to 'Edit', edit_release_path(release) %><br />
-				<%= link_to 'Delete', release_path(release), :method => :delete, :confirm => 'Are you sure?'%>
-			</td>
-		<% end %>
-	</tr>
-<% end %>
-
+	<%= render :partial => "release", :collection => @releases %>
 </table>
 
 <% if current_admin && !@releases.empty? %>

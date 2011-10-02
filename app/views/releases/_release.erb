@@ -1,0 +1,18 @@
+<tr id="<%= release.id %>" class="<%= cycle('odd','even') %>">
+	<td><%= release.catalogue_number %></td>
+	<td>
+		<% if !release.artist.nil? %>
+			<%= release.artist.name %>
+		<% end %>
+	</td>
+	<td><%= release.title %></td>
+	<td><%= release.release_date %></td>
+	<td><%= release.publisher %></td>
+	<% if current_admin %>
+		<td>
+			<%= link_to 'View', release_path(release) %><br />
+			<%= link_to 'Edit', edit_release_path(release) %><br />
+			<%= link_to 'Delete', release_path(release), :method => :delete, :confirm => 'Are you sure?'%>
+		</td>
+	<% end %>
+</tr>

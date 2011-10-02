@@ -71,6 +71,18 @@ class ReleasesController < ApplicationController
     end
   end
   
+  def search  
+    if params[:search].blank?
+      @releases = Release.find(:all, :order => "release_date DESC")
+    else
+      @releases = Release.joins(:artist).where("lower(releases.title) LIKE ? OR lower(artists.name) LIKE ?","%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("releases.release_date DESC")
+    end
+    
+    respond_to do |format| 
+      format.json {render :partial => "release", :collection => @releases} 
+    end
+  end
+  
   private
     def login_required
       unless current_admin
