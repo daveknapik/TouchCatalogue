@@ -9,6 +9,7 @@ $ ->
 					dataType: 'html'
 					data:
 						search: $('#search').val()
+						publisher: $('#release_publisher').val()
 					beforeSend: (jqXHR, settings) ->
 						$('#toolbar img').show()
 					success: (data, textStatus, jqXHR) ->

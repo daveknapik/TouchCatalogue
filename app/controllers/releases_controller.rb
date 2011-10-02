@@ -78,6 +78,10 @@ class ReleasesController < ApplicationController
       @releases = Release.joins(:artist).where("lower(releases.title) LIKE ? OR lower(artists.name) LIKE ?","%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("releases.release_date DESC")
     end
     
+    unless params[:publisher].blank? || params[:publisher] == "all"
+      @releases = @releases.where(:publisher => params[:publisher])
+    end
+    
     respond_to do |format| 
       format.json {render :partial => "release", :collection => @releases} 
     end
