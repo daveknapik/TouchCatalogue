@@ -1,5 +1,7 @@
 class ReleasesController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :list_by_publisher]
+  caches_page :list_by_publisher
+  cache_sweeper :release_sweeper, :only => [:create, :update, :destroy]
   
   def index
     @releases = Release.find(:all, :order => "release_date DESC")

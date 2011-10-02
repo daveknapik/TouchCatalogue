@@ -5,5 +5,5 @@ TouchCatalogue::Application.routes.draw do
   resources :releases
   resources :admin_sessions
   
-  match 'releases/publisher/:publisher.:format', :to => 'releases#list_by_publisher'
+  match 'releases/publisher/:publisher', :to => 'releases#list_by_publisher'
 end
