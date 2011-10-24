@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -22,9 +22,16 @@ gem 'exceptional'
 group :development, :test do
 	gem 'heroku'
 	gem 'taps'
+	gem 'factory_girl'
+	gem 'factory_girl_rails'
 end
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'turn', '< 0.8.3'
+  gem 'database_cleaner'
 end
