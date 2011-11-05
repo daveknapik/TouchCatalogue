@@ -11,4 +11,5 @@ Factory.define :release, :class => Release do |r|
   r.description "Mixed and mastered by BJNilsen, Berlin, February 2009. Image by Jon Wozencroft.\r\n\r\nBoomkat (UK):\r\n\r\nAn addendum to her exquisite Without Sinking album, 'Iridescence' is a wonderful eleven minute blast of Hildur Gudnadottir's uniquely emotive music for cello and electronics. The piece gradually creeps further and further into the electronic domain, beginning in a haze of minor-key, multitracked strings, only to dissolve into the air as a bitcrushing algorithm takes hold. By the piece's conclusion, the overwhelming, gushing melancholy of it all is displaced by a strangely mechanical network of overtones and harmonic spillage, making 'Iridescence' all the more elegiac. Brilliant.\r\n\r\nListening track: extract\r\n"
   r.reviews "So awesome!"
   r.publisher "Touch"
+  r.association :artist
 end
