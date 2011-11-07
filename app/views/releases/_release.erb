@@ -8,6 +8,7 @@
 	<td><%= release.title %></td>
 	<td><%= release.release_date %></td>
 	<td><%= release.publisher %></td>
+	<td><%= release.published ? "Published" : "Draft" %></td>
 	<% if current_admin %>
 		<td>
 			<%= link_to 'View', release_path(release) %><br />

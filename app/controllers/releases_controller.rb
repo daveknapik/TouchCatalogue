@@ -4,11 +4,14 @@ class ReleasesController < ApplicationController
   cache_sweeper :release_sweeper, :only => [:create, :update, :destroy]
   
   def index
-    @releases = Release.find(:all, :order => "release_date DESC")
+    @releases = Release.includes(:artist).order("release_date DESC")
     
     respond_to do |format| 
       format.html 
-      format.xml { render :layout => false} 
+      format.xml do 
+        @releases = Release.includes(:artist).where(:published => true).order("release_date DESC")
+        render :layout => false
+      end
     end
   end
   
@@ -73,9 +76,9 @@ class ReleasesController < ApplicationController
   
   def search  
     if params[:search].blank?
-      @releases = Release.find(:all, :order => "release_date DESC")
+      @releases = Release.includes(:artist).order("release_date DESC")
     else
-      @releases = Release.joins(:artist).where("lower(releases.title) LIKE ? OR lower(artists.name) LIKE ?","%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("releases.release_date DESC")
+      @releases = Release.includes(:artist).joins(:artist).where("lower(releases.title) LIKE ? OR lower(artists.name) LIKE ?","%#{params[:search].downcase}%","%#{params[:search].downcase}%").order("releases.release_date DESC")
     end
     
     unless params[:publisher].blank? || params[:publisher] == "all"

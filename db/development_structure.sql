@@ -109,7 +109,8 @@ CREATE TABLE releases (
     artist_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    publisher character varying(255)
+    publisher character varying(255),
+    published boolean DEFAULT true
 );
 
 
@@ -206,3 +207,5 @@ INSERT INTO schema_migrations (version) VALUES ('20100119165327');
 INSERT INTO schema_migrations (version) VALUES ('20100716215014');
 
 INSERT INTO schema_migrations (version) VALUES ('20100802163044');
+
+INSERT INTO schema_migrations (version) VALUES ('20111106235230');

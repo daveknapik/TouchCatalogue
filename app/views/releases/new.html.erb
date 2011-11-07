@@ -68,5 +68,10 @@
 		<%= form.text_area :reviews %>
 	</p>
 	
+	<p>
+		<%= form.label :published, "Save as draft?" %><br />
+		<%= form.check_box :published, {}, false, true %>
+	</p>
+	
 	<%= form.submit %>
 <% end %>

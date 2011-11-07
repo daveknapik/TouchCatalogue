@@ -30,6 +30,11 @@ When /^I add a new release$/ do
   click_button "Create Release"
 end
 
+When /^I draft a new release$/ do
+  check "Save as draft?"
+  step "I add a new release"
+end
+
 When /^I change the title to "([^"]*)"$/ do |arg1|
   visit edit_release_path @release.id
   fill_in "Title", :with => arg1
@@ -50,4 +55,9 @@ Then /^I should see that release listed$/ do
   page.should have_content @release.title
   page.should have_content @release.release_date
   page.should have_content @release.publisher
+end
+
+Then /^I should see that release listed as a draft$/ do
+  step "I should see that release listed"
+  page.should have_content "Draft"
 end

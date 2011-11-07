@@ -11,8 +11,14 @@ Scenario: Visit the new release page from the release index page
 	When I click on "Add new release"
 	Then I should be on the new release page
 
-Scenario:
+Scenario: Add a new release
 	Given I am on the new release page
 	When I add a new release
 	Then I should be on the release index page
 	And I should see that release listed
+
+Scenario: Draft a new release
+	Given I am on the new release page
+	When I draft a new release
+	Then I should be on the release index page
+	And I should see that release listed as a draft
