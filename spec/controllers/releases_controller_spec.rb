@@ -6,7 +6,8 @@ describe ReleasesController do
       render_views
       
       before(:each) do
-        @release = Factory.create(:release)
+        @published_release = Factory.create(:release, :title => "Venice", :published => true)
+        @unpublished_release = Factory.create(:release, :title => "TBA", :published => false) 
         request.env['HTTP_ACCEPT'] = 'application/xml'
         get :index
         @xml_doc = Nokogiri::XML(response.body)
@@ -24,8 +25,12 @@ describe ReleasesController do
         @xml_doc.root.attr("type").should == "array"
       end
       
-      it "should contain all releases in the catalogue" do
-        @xml_doc.xpath("//release").count.should == Release.all.count
+      it "should contain all published releases in the catalogue" do
+        @xml_doc.xpath("//release").count.should == Release.published.count
+      end
+      
+      it "should only contain published releases" do
+        @xml_doc.xpath("//release/title").inner_html.should == @published_release.title
       end
     end
   end

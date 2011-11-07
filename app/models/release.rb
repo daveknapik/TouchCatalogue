@@ -1,5 +1,7 @@
 class Release < ActiveRecord::Base
   belongs_to :artist
+  scope :published, where(:published => true)
+  scope :draft, where(:published => false)
   
   def artist_name
     artist.name if artist
