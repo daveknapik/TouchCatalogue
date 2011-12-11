@@ -9,7 +9,7 @@ class ReleasesController < ApplicationController
     respond_to do |format| 
       format.html 
       format.xml do 
-        @releases = Release.includes(:artist).where(:published => true).order("release_date DESC")
+        @releases = @releases.published
         render :layout => false
       end
     end
@@ -61,16 +61,18 @@ class ReleasesController < ApplicationController
   #Custom XML feed methods based on release's publisher
   def list_by_publisher
     @publisher = params[:publisher].gsub("-"," ")
+    @releases = Release.includes(:artist).order("release_date DESC")
     
-    if (@publisher == "all")
-      @releases = Release.find(:all, :order => "release_date DESC")
-    else
-      @releases = Release.find(:all, :conditions => ["publisher = ?", @publisher], :order => "release_date DESC")
+    unless (@publisher == "all")
+      @releases = @releases.where("publisher = ?", @publisher)
     end
     
     respond_to do |format| 
       format.html {render :template => "releases/index"}
-      format.xml {render :template => "releases/index", :layout => false} 
+      format.xml do
+        @releases = @releases.published
+        render :template => "releases/index", :layout => false
+      end
     end
   end
   

@@ -70,7 +70,8 @@
 	
 	<p>
 		<%= form.label :published, "Save as draft?" %><br />
-		<%= form.check_box :published, {}, false, true %>
+		<%= hidden_field_tag "release[published]", true, :id => "release_published_hidden" %>
+		<%= check_box_tag "release[published]", false, true, :id => "release_published" %>
 	</p>
 	
 	<%= form.submit %>

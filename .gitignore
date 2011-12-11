@@ -6,3 +6,5 @@ tmp/
 .git/
 .DS_Store
 .rvmrc
+.rspec
+public/releases/*
